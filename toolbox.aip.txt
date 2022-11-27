@@ -1,4 +1,4 @@
-[edition]0.0.0.1[/edition]
+[edition]0.0.0.2[/edition]
 [aa]666
 1[/aa]
 [bb]无[/bb]
