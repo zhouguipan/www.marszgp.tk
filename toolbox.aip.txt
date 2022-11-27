@@ -1,5 +1,14 @@
-[edition]0.0.0.2[/edition]
-[aa]大家好[/aa]
-[gxnr]无[/gxnr]
-[Download1]http://www.marszgp.tk/%E5%B7%A5%E5%85%B7%E7%AE%B1/%E5%B7%A5%E5%85%B7%E7%AE%B15.5.7.exe[/Download1]
-[Download2]http://zhouguipan.github.io/%E5%B7%A5%E5%85%B7%E7%AE%B1/%E5%B7%A5%E5%85%B7%E7%AE%B15.5.7.exe[/Download2]
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>工具箱API</title>
+	</head>
+	<body>
+		<a>[edition]0.0.0.2[/edition]</a>
+		<a>[aa]大家好[/aa]</a>
+		<a>[gxnr]无[/gxnr]</a>
+		<a>[Download1]http://www.marszgp.tk/%E5%B7%A5%E5%85%B7%E7%AE%B1/%E5%B7%A5%E5%85%B7%E7%AE%B15.5.7.exe[/Download1]</a>
+		<a>[Download2]http://zhouguipan.github.io/%E5%B7%A5%E5%85%B7%E7%AE%B1/%E5%B7%A5%E5%85%B7%E7%AE%B15.5.7.exe[/Download2]</a>
+	</body>
+</html>
