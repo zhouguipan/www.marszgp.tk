@@ -3,5 +3,5 @@
 [edition]0.0.0.1[/edition]
 [aa]666
 1[/aa]
-[Download]https://zhouguipan.github.io/%E5%B7%A5%E5%85%B7%E7%AE%B1/%E5%B7%A5%E5%85%B7%E7%AE%B15.5.7.exe[/Download]
+[Download]https://www.marszgp.tk/%E5%B7%A5%E5%85%B7%E7%AE%B1/%E5%B7%A5%E5%85%B7%E7%AE%B15.5.7.exe[/Download]
 </body></html>
