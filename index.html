@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
 <head>
-    <title>测试</title>
+    <title>Marsz个人网站</title>
+    <link rel="shortcut icon" href="https://blog.marsz.ml/wp-content/uploads/2023/01/R-C-150x150.jpg">
+    <meta name="Keywords" content="Marsz个人网站,Marsz博客,Marsz">
+    <meta name="Description" content="Marsz个人网站">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style>
         .loading {
@@ -13,27 +18,183 @@
             background-color: white;
             z-index: 10000;
         }
+
+        .loadingThree {
+            width: 150px;
+            height: 15px;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+            .loadingThree span {
+                display: inline-block;
+                width: 15px;
+                height: 100%;
+                margin-right: 5px;
+                border-radius: 500%;
+                background: black;
+                -webkit-animation: load 1.04s ease infinite;
+            }
+
+                .loadingThree span:last-child {
+                    margin-right: 0px;
+                }
+
+        @-webkit-keyframes load {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .loadingThree span:nth-child(1) {
+            -webkit-animation-delay: 0.13s;
+        }
+
+        .loadingThree span:nth-child(2) {
+            -webkit-animation-delay: 0.26s;
+        }
+
+        .loadingThree span:nth-child(3) {
+            -webkit-animation-delay: 0.39s;
+        }
+
+        .loadingThree span:nth-child(4) {
+            -webkit-animation-delay: 0.52s;
+        }
+
+        .loadingThree span:nth-child(5) {
+            -webkit-animation-delay: 0.65s;
+        }
+
+        * {
+            cursor: url(1.cur), auto;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html {
+            height: 100%;
+            background: url("https://api.dujin.org/bing/1920.php") no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #CCCCCC;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .box {
+            position: absolute;
+            margin: 20px auto 0;
+            top: 20px;
+            left: 0;
+            right: 0;
+        }
+
+        .ann {
+            border: 1px solid black;
+            border-radius: 30px;
+            padding: 5px 15px;
+            display: inline-block;
+            background: transparent;
+            text-decoration: none;
+            color: black;
+        }
+
+        .cs {
+            text-align: center;
+            //background-color: rgba(214,215,216,0.6);
+            border-radius: 50px;
+            //width: 300px;
+            //height: 370px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .round_icon {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 20px 0 16px 0;
+            margin: 0 auto;
+        }
+
+        .nickname {
+            font-size: 30px;
+        }
     </style>
+
     <script type="text/javascript">
         document.onreadystatechange = function () {
             if (document.readyState == "complete") {
                 setTimeout(function () {
-                    $(".loading").fadeOut(500);
-                }, 500);
+                    $(".loading").fadeOut(300);
+                }, 2500);
+            }
+        }
+        document.oncontextmenu = function (event) {
+            if (window.event) {
+                event = window.event;
+            }
+            try {
+                var the = event.srcElement;
+                if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                    return false;
+                }
+                return true;
+            }
+            catch (e) {
+                return false;
             }
         }
     </script>
+
 </head>
+
 <body>
+
     <div class="loading">
+        <div class="loadingThree cs">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="cs">
+        <img src="R-C.jpg" class="round_icon">
+        <a class="nickname">MARSZ</a>
+        <br>
+        <br>
+        <script type="text/javascript" src="https://q6q.cc/api/yiyan/api.php?format=js"></script>
+        <script>
+            yiyan()
+        </script>
+        <br>
+        <br>
+
+        <a class="ann" href="https://blog.marsz.ml/">博客</a>
 
     </div>
 
-    <!-- 播放器 -->
-    <link rel="stylesheet" href="https://blog.marsz.ml/Marsz/css/APlayer.min.css">
-    <script src="https://blog.marsz.ml/Marsz/js/APlayer.min.js"></script>
-    <script src="https://blog.marsz.ml/Marsz/js/Meting.min.js"></script>
-    <meting-js server="netease" type="playlist" id="1978921795" fixed="true" mini="true" order="random" loop="all" preload="auto" list-folded="false">
-
+    <div>
+        <link rel="stylesheet" href="https://blog.marsz.ml/Marsz/css/APlayer.min.css">
+        <script src="https://blog.marsz.ml/Marsz/js/APlayer.min.js"></script>
+        <script src="https://blog.marsz.ml/Marsz/js/Meting.min.js"></script>
+        <meting-js server="netease" type="playlist" id="1978921795" fixed="true" mini="true" order="random" loop="all" preload="auto" list-folded="false">
+    </div>
 </body>
+
 </html>
