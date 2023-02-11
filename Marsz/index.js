@@ -28,7 +28,7 @@ function setTime() {
     var create_time = Math.round(new Date(Date.UTC(2023, 01, 1, 2, 0, 0)).getTime() / 1000);
     var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
     currentTime = secondToDate((timestamp - create_time));
-    currentTimeHtml = currentTime[0] + 'å¹´ ' + currentTime[1] + 'å¤© ' + currentTime[2] + 'æ—¶ ' + currentTime[3] + 'åˆ† ' + currentTime[4] + 'ç§’';
+    currentTimeHtml = currentTime[0] + 'Äê ' + currentTime[1] + 'Ìì ' + currentTime[2] + 'Ê± ' + currentTime[3] + '·Ö ' + currentTime[4] + 'Ãë ';
     document.getElementById("marszgrzyyxsj").innerHTML = currentTimeHtml;
 }
 setInterval(setTime, 1000);
