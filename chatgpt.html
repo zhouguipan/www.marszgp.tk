@@ -3,9 +3,7 @@
 <head>
     <meta name="360-analysis-id" content="2x1c2x2p2w392s-xiarou">
     <meta charset="utf-8">
-    <title>
-        APIGPT - FreeChatGPT
-    </title>
+    <title>APIGPT - FreeChatGPT</title>
     <link rel="stylesheet" href="https://img.api.aa1.cn/2023/02/12/fc4bbacb8bfdd.css">
     <link rel="stylesheet" href="https://img.api.aa1.cn/2023/02/12/d08c5e4dac7af.css">
     <meta charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
@@ -53,7 +51,7 @@
     </script>
     <script>
         document.onkeydown = function(e) {
-            if (!e) e = window.event; //火狐中是 window.event
+            if (!e) e = window.event;
             if ((e.keyCode || e.which) == 13) {
                 document.getElementById("send-button").click();
             }
@@ -63,42 +61,33 @@
             var chatBody = $('#chat-body');
             var messageInput = $('#message');
             var sendButton = $('#send-button');
-            // 发送消息
             sendButton.click(function() {
                 var message = messageInput.val();
                 if (message.trim() !== '') {
-                    // 在聊天记录区域中添加用户输入的消息
                     appendMessage('You', message);
                     $('.chat-area').animate({
                             scrollTop: $('.chat-area')[0].scrollHeight
                         },
                         1000);
 
-                    // 调用ChatGPT接口获取回复消息
                     $.ajax({
-                        //  接口来自夏柔API
                         url: 'https://v1.apigpt.cn/chatgpt/',
                         type: 'POST',
                         data: {
                             message: message
                         },
                         success: function(response) {
-                            // 在聊天记录区域中添加ChatGPT的回复消息
                             appendMessage('ChatGPT', response);
                             $('.chat-area').animate({
                                     scrollTop: $('.chat-area')[0].scrollHeight
                                 },
                                 1000);
-
                         }
                     });
-
-                    // 清空输入框
                     messageInput.val('');
                 }
             });
-
-            // 在聊天记录区域中添加一条消息
+            
             function appendMessage(from, message) {
                 var messageElement = $('<div class="chat-msg" id="chatai"></div>');
                 var messagePend = $('<div class="chat-msg-profile"></div>')
@@ -116,19 +105,14 @@
 
                 // avatarElement.text(from[0]);
                 messageContentElement.html(message);
-
                 messagePend.append(avatarElement);
                 messagePend.append(tipsElement);
                 messageElement.append(messagePend);
                 messageElement.append(messageContentElement);
-
                 chatBody.append(messageElement);
-                // 滚动聊天记录区域到底部
                 chatBody.scrollTop(chatBody[0].scrollHeight);
             }
         });
     </script>
-    <!-- JS End -->
 </body>
-
 </html>
