@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>加载cs.html文件带进度条</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+$(document).ready(function(){
+$("#loadBtn").click(function(){
+$("#progressBar").show();
+$.ajax({
+url: "cs.html",
+dataType: "html",
+xhr: function(){
+var xhr = new window.XMLHttpRequest();
+xhr.addEventListener("progress", function(evt){
+if(evt.lengthComputable){
+var percentComplete = evt.loaded / evt.total;
+$("#progressBar").css({width: percentComplete*100 + "%"});
+}
+}, false);
+return xhr;
+},
+success: function(data){
+$("#csContent").html(data);
+$("#progressBar").hide();
+},
+error: function(){
+alert("加载文件失败！");
+$("#progressBar").hide();
+}
+});
+});
+});
+</script>
+<style>
+#progressBar{
+  background-color: #4CAF50;
+  height: 5px;
+  width: 0%;
+  position: fixed;
+  top: 0;
+  display: none;
+  transition: width 0.3s ease-in-out;
+}
+
+
+</style>
+</head>
+<body>
+<div id="progressBar"></div>
+<button id="loadBtn">加载cs.html文件</button>
+
+<div id="csContent"></div>
+</body>
+</html>
