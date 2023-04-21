@@ -1,55 +1,249 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
 <head>
-<title>加载cs.html文件带进度条</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script>
-$(document).ready(function(){
-$("#loadBtn").click(function(){
-$("#progressBar").show();
-$.ajax({
-url: "cs.html",
-dataType: "html",
-xhr: function(){
-var xhr = new window.XMLHttpRequest();
-xhr.addEventListener("progress", function(evt){
-if(evt.lengthComputable){
-var percentComplete = evt.loaded / evt.total;
-$("#progressBar").css({width: percentComplete*100 + "%"});
-}
-}, false);
-return xhr;
-},
-success: function(data){
-$("#csContent").html(data);
-$("#progressBar").hide();
-},
-error: function(){
-alert("加载文件失败！");
-$("#progressBar").hide();
-}
-});
-});
-});
-</script>
-<style>
-#progressBar{
-  background-color: #4CAF50;
-  height: 5px;
-  width: 0%;
-  position: fixed;
-  top: 0;
-  display: none;
-  transition: width 0.3s ease-in-out;
-}
+    <meta charset="UTF-8">
+    <title>中国黑客联盟俱乐部-专注于网络安全与技术分享</title>
+    <link rel="shortcut icon" href="">
+    <meta name="keywords" content="黑客技术,黑客入门,黑客工具,网络安全,渗透测试">
+    <meta name="description" content="中国黑客联盟俱乐部-专注于网络安全与技术分享">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+
+    <style>
+        * {
+        	margin: 0;
+        	padding: 0;
+        }
+        
+        html,
+        body {
+            height: 100vh;
+            background: url("https://preview-pro-b.cjjd19.com/123-349/c127b957/1813412098-0/c127b95753361d60d71cbcd650bf355d?v=2&t=1682130599&s=813ae157af4b7a44ce5ddbb3d1047fed&filename=logo.png") no-repeat center center;
 
 
-</style>
+			text-align: center;
+        	font-family: 'proxima-nova', Helvetica;
+        }
+
+		@media screen and (max-width: 1666px) {
+			body {
+				background-size: contain;
+			}
+		}
+        
+        #container {
+        	overflow: hidden;
+        	position: absolute;
+        	top: 0;
+        	left: 0;
+        	right: 0;
+        	bottom: 0;
+        }
+        
+        #background_video {
+        	position: absolute;
+        
+        	top: 50%;
+        	left: 50%;
+        	transform: translate(-50%, -50%);
+        
+        	object-fit: cover;
+        	height: 100%;
+        	width: 100%;
+        }
+        
+        #video_cover {
+        	position: absolute;
+        
+        	width: 100%;
+        	height: 100%;
+        
+        	background: url('https://www.ohltk.com/img/bg.png') no-repeat;
+        	background-size: cover;
+        	background-position: center;
+        }
+        
+        #video_controls {
+        	position: absolute;
+        	left: 50%;
+        	transform: translate(-50%, 0);
+        }
+        
+        #play img {
+        	width: 100px;
+        }
+        
+        #pause img {
+        	width: 90px;
+        }
+        
+        #pause {
+        	display: none;
+        }
+        
+        @media (min-width: 768px) {
+        	#video_controls {
+        display: none;
+        	}
+        }
+        
+        #container {
+        	height: 100%;
+        }
+        
+        #overlay {
+        	position: absolute;
+        	top: 0;
+        	right: 0;
+        	left: 0;
+        	bottom: 0;
+        	background: rgba(0, 0, 0, 0.5);
+        }
+        
+        #main_head {
+        	z-index: 2;
+        	position: absolute;
+        	display: inline-block;
+        	top: 10%;
+        	left: 3%;
+        	transform: translateY(-50%);
+        }
+        
+        #main_content {
+        	z-index: 2;
+        	position: relative;
+        	display: inline-block;
+            padding: 0 15px;
+        	/* Vertical center */
+        	top: 40%;
+        	transform: translateY(-50%);
+        }
+        
+        #main_content h1 {
+        	text-transform: uppercase;
+        	font-weight: 600;
+        	font-family: 'proxima-nova-condensed', Helvetica;
+        	color: #fff;
+        	font-size: 30px;
+        	line-height: 50px;
+        }
+        
+        #main_content .sub_head {
+        	color: rgba(255, 255, 255, 0.5);
+        	font-size: 18px;
+        }
+        
+        #main_content .info {
+        	color: rgba(255, 255, 255, 0.5);
+        	font-size: 12px;
+        	margin-top: 10px;
+        }
+        
+        #links {
+        	margin-top: 50px;
+        }
+        
+        #links a {
+        	border: 2px solid rgba(255, 255, 255, 0.20);
+        	border-radius: 61px;
+        	font-size: 13px;
+        	color: #FFFFFF;
+        	letter-spacing: 1px;
+        	text-decoration: none;
+        	text-transform: uppercase;
+        	padding: 10px 25px;
+        	display: inline-block;
+        	margin-right: 15px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        #links a:last-child{margin-right: 0px;}
+        #links a:hover{background: rgba(255, 255, 255, 0.20);}
+        #footer {
+        	position: absolute;
+        	bottom: 30px;
+        	left: 0;
+        	right: 0;
+        	text-align: center;
+        }
+        
+        #footer a {
+        	color: rgba(255, 255, 255, 0.5);
+        	text-decoration: none;
+        	margin: 10px 0 10px 0;
+        	font-size: 14px;
+        }
+        
+        #footer span {
+        	color: rgba(255, 255, 255, 0.5);
+        	text-decoration: none;
+        	margin: 5px 0 10px 0;
+        	font-size: 14px;
+        }
+            
+        #footer span:hover .flex-footer {
+        	display: block;
+        }
+        
+        #header {
+        	z-index: 2;
+        	position: absolute;
+        	top: 0;
+        	left: 0;
+        	right: 0;
+        }
+
+		.header_left {
+			float: left;
+			margin: 30px 0 0 50px;
+			cursor: pointer;
+			font-size: 29px;
+			color: #a7a7a7;
+		}
+
+    </style>
 </head>
-<body>
-<div id="progressBar"></div>
-<button id="loadBtn">加载cs.html文件</button>
 
-<div id="csContent"></div>
+<body>
+    <header id="header">
+        <div class="header_left">
+            <img src="" alt="中国黑客联盟俱乐部" title="中国黑客联盟俱乐部" style="display:none;">
+            中国黑客联盟俱乐部
+        </div>
+    </header>
+    <div id="container">
+        <div id="overlay"></div>
+        <section id="main_content">
+            <div id="head">
+                <h1>中国黑客联盟俱乐部</h1>
+                <p class="sub_head">中国黑客联盟俱乐部-专注于网络安全与技术分享</p>
+            </div>
+            <div id="links">
+                <a href="https://www.xn--fiqs8s60d609a34j7r8b.club/bbs/index.php" target="_blank">中国黑客联盟社区</a>
+                <a href="https://www.xn--fiqs8s60d609a34j7r8b.club/tools" target="_blank">中国黑客联盟工具</a>
+            </div>
+        </section>
+    </div>
+    <div id="footer">
+        <span class="info">中国黑客联盟俱乐部-专注于网络安全与技术分享</a></span>
+		<audio src="http://v1.cdn-static.cn/2023/3/19/38079_lfexz3g0.mp3" autoplay="autoplay" preload="auto"></audio>
+    </div>
+    <script src='https://api.vvhan.com/api/snow'></script>
+    <script type="text/javascript">
+        /*$(document).bind("contextmenu",function(){return false;});	//禁止右键
+        
+        $(document).bind("selectstart",function(){return false;});	//禁止选择
+        
+        document.onkeydown = function(){							//禁止F12
+            if(window.event && window.event.keyCode == 123 || window.event.keyCode== 83 ||window.event.keyCode== 85) {
+                    event.keyCode = 0;
+                    event.returnValue = false;
+             }
+        }*/
+    </script>
+
 </body>
+
 </html>
