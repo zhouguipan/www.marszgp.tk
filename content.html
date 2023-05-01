@@ -1,0 +1,178 @@
+<meta charset="UTF-8">
+<style>
+        * {
+            cursor: url(https://marsz.ml/Marsz/res/1.cur), auto;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .full-screen {
+            height: 100vh;
+            background: url("https://api.dujin.org/bing/1920.php") no-repeat center center;
+            background-size: cover;
+            /*
+            background-attachment: fixed;
+            */
+        }
+
+        .bottom {
+            height: 0px;
+            background-color: rgb(255, 255, 255);
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .bottom1 {
+            height: 40px;
+            line-height: 40px;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background: #333;
+            color: #fff;
+            font-family: Arial;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .cs {
+            text-align: center;
+            border-radius: 50px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .cursor {
+            display: inline-block;
+            border-right: 2px solid rgb(0, 0, 0);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        .tx {
+            padding-top: 5px;
+        }
+
+            .tx img {
+                margin: 10px auto;
+                display: block;
+                border-radius: 10em;
+                box-shadow: 0 0 0 2px #fff, 4px 3px 5px 3px #3535353d;
+            }
+
+                .tx img:hover {
+                    -webkit-animation: round_animate 5s linear infinite;
+                    animation: round_animate 1s linear infinite;
+                }
+
+        @keyframes round_animate {
+            to {
+                transform: rotate(1turn);
+            }
+        }
+
+        .cs1 {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.11);
+            z-index: 1000;
+        }
+
+        .player {
+            position: fixed;
+            left: -255px;
+            top: 70%;
+            transform: translateY(-30%);
+            transition: left 0.5s ease-in-out;
+        }
+
+            .player:hover {
+                left: 0;
+            }
+
+
+        .nav-link {
+            color: rgb(0, 0, 0) !important;
+            margin: auto 1rem;
+        }
+
+        .navbar {
+            backdrop-filter: blur(5px);
+            background-color: rgba(153, 153, 153, .15) !important;
+        }
+
+        .navbar-nav .nav-link {
+            position: relative;
+        }
+
+            .navbar-nav .nav-link:hover::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 2px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: rgb(0, 0, 0);
+            }
+
+</style>
+<script>
+        //刷新后返回上面
+        window.onbeforeunload = function () {
+            document.documentElement.scrollTop = 0;  //ie下
+            document.body.scrollTop = 0;  //非ie
+        }
+        //一言
+        function cs() {
+            fetch('https://v1.hitokoto.cn/')
+                .then(response => response.json())
+                .then(data => document.getElementById('yy').innerHTML = data.hitokoto);
+        }
+        cs()
+</script>
+<main id="main-content">
+    <div class="full-screen">
+        <div class="cs1">
+            <!-- 初始页面内容 -->
+            <div class="cs">
+                <div class="tx"><img src="https://q2.qlogo.cn/headimg_dl?dst_uin=1529049227&spec=100" alt='个人头像'></div>
+                <h1>MARSZ</h1>
+                <p id="yy"></p>
+            </div>
+        </div>
+    </div>
+    <div class="bottom1">Copyright © 2023 MARSZ 版权所有</div>
+</main>
+<script>
+    // pjax配置
+    $(document).pjax('.pjax-link', '#main-content', {timeout: 5000});
+    
+    $(window).on('load', function() {
+        $(document).on('pjax:start', function() { NProgress.start(); });
+        $(document).on('pjax:end', function() { NProgress.done(); });
+    });
+    
+    // NProgress过渡动画
+    NProgress.configure({ showSpinner: true });//true false
+    $(document).on('pjax:start', function() { NProgress.start(); });
+    $(document).on('pjax:end', function() { NProgress.done(); });
+</script>
+    
