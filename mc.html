@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>查询服务器状态</title>
+</head>
+<body>
+    <div id="serverStatus"></div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        var url = "https://marszgp.tk/api/mc/json.php?ip=119.188.240.80&port=31513";
+
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                var serverStatusDiv = document.getElementById("serverStatus");
+                if (response.status === "success") {
+                    var state = response.state;
+                    var version = response.version;
+                    var motd = response.motd;
+                    var players = response.players;
+
+                    serverStatusDiv.innerHTML = "服务器状态：" + state + "<br>" +
+                                                "版本：" + version + "<br>" +
+                                                "描述：" + motd + "<br>" +
+                                                "在线人数：" + players;
+                } else {
+                    serverStatusDiv.innerHTML = "获取服务器状态失败：" + response.message;
+                }
+            }
+        };
+        xhr.send();
+    </script>
+</body>
+</html>
